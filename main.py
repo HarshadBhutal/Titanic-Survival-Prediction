@@ -28,7 +28,7 @@ df=pd.get_dummies(df,columns=["AgeGroup"],drop_first=True)
 x=df.drop(columns=["Survived"])
 y=df["Survived"]
 
-x_train,x_test,y_train,y_test=train_test_split(x,y,train_size=0.2,random_state=43)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=43)
 
 scaler=StandardScaler()
 x_train_norm=scaler.fit_transform(x_train)
@@ -39,7 +39,7 @@ model.fit(x_train_norm,y_train)
 
 y_pred=model.predict(x_test_norm)
 
-print(confusion_matrix(y_test,y_pred))
-print(classification_report(y_test,y_pred))
-print("roc auc ",roc_auc_score(y_test,y_pred))
+print("confusion matrix\n",confusion_matrix(y_test,y_pred))
+print("Classification report\n",classification_report(y_test,y_pred))
+print("roc auc = ",roc_auc_score(y_test,y_pred))
 
